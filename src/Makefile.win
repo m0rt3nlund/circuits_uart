@@ -94,4 +94,4 @@ endif
 .PHONY: all clean install
 
 # Don't echo commands unless the caller exports "V=1"
-${V}.SILENT:
+#${V}.SILENT:
