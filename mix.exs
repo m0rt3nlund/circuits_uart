@@ -16,7 +16,7 @@ defmodule Circuits.UART.MixProject do
       make_targets: ["all"],
       make_clean: ["clean"],
       make_executable: make_executable(),
-      make_makefile: "src/Makefile",
+      make_cwd: "src",
       make_error_message: make_error_message(),
       docs: docs(),
       start_permanent: Mix.env() == :prod,
