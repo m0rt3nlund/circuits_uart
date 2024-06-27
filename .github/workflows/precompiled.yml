@@ -86,7 +86,6 @@ jobs:
 
       - name: Install erlang and elixir
         run: |
-          brew install erlang elixir
           mix local.hex --force
           mix local.rebar --force
 
