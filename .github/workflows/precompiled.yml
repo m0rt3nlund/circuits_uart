@@ -97,8 +97,8 @@ jobs:
           mix local.rebar --force
 
       - name: Create precompiled library
+        shell: bash
         run: |
-          echo "C:\msys64\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
           mix deps.get
           mix elixir_make.precompile
 
