@@ -83,10 +83,6 @@ jobs:
     env:
       MIX_ENV: "prod"
 
-    defaults:
-      run:
-        shell: bash
-
     steps:
       - uses: actions/checkout@v3
 
@@ -102,7 +98,7 @@ jobs:
 
       - name: Create precompiled library
         run: |
-          $env:PATH = "C:\msys64\usr\bin;$env:PATH"
+          Add-Content $env:PATH "C:\msys64\usr\bin;$env:PATH"
           mix deps.get
           mix elixir_make.precompile
 
