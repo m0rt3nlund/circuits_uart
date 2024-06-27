@@ -18,6 +18,12 @@ defmodule Circuits.UART.MixProject do
       make_executable: make_executable(),
       make_cwd: "src",
       make_error_message: make_error_message(),
+      make_precompiler: {:nif, CCPrecompiler},
+      make_precompiler_url:
+        "https://github.com/cocoa-xu/cc_precompiler_example/releases/download/v#{@version}/@{artefact_filename}",
+      make_precompiler_filename: "nif",
+      make_precompiler_priv_paths: ["nif.*"],
+      make_precompiler_unavailable_target: :compile,
       docs: docs(),
       start_permanent: Mix.env() == :prod,
       dialyzer: dialyzer(),
@@ -60,7 +66,8 @@ defmodule Circuits.UART.MixProject do
       {:elixir_make, "~> 0.6", runtime: false},
       {:ex_doc, "~> 0.22", only: :docs, runtime: false},
       {:credo, "~> 1.6", only: :dev, runtime: false},
-      {:dialyxir, "~> 1.2", only: :dev, runtime: false}
+      {:dialyxir, "~> 1.2", only: :dev, runtime: false},
+      {:cc_precompiler, "~> 0.1.10"}
     ]
   end
 
