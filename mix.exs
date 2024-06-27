@@ -16,7 +16,7 @@ defmodule Circuits.UART.MixProject do
       make_targets: ["all"],
       make_clean: ["clean"],
       make_executable: make_executable(),
-      make_cwd: "src",
+      make_makefile: "src/Makefile.win",
       make_error_message: make_error_message(),
       make_precompiler: {:nif, CCPrecompiler},
       make_precompiler_url:
