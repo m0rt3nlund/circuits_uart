@@ -96,8 +96,6 @@ jobs:
 
       - name: Create precompiled library
         run: |
-          export ELIXIR_MAKE_CACHE_DIR=$(pwd)/cache
-          mkdir -p "${ELIXIR_MAKE_CACHE_DIR}"
           mix elixir_make.precompile
 
       - uses: softprops/action-gh-release@v1
