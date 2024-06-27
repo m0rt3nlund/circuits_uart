@@ -83,13 +83,13 @@ jobs:
     env:
       MIX_ENV: "prod"
 
+
+    defaults:
+      run:
+        shell: bash
+
     steps:
       - uses: actions/checkout@v3
-
-      - name: Set up MinGW
-        uses: egor-tensin/setup-mingw@v2
-        with:
-            platform: x64
 
       - uses: erlef/setup-beam@v1
         with:
