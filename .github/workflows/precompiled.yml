@@ -99,6 +99,7 @@ jobs:
           mix local.rebar --force
 
       - name: Create precompiled library
+        shell: bash
         run: |
           mix deps.get
           mix elixir_make.precompile
