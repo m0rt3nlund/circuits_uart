@@ -21,7 +21,7 @@
 PREFIX = $(MIX_APP_PATH)/priv
 BUILD  = $(MIX_APP_PATH)/obj
 
-CFLAGS ?= -O2 -Wall -Wextra -Wno-unused-parameter
+CFLAGS ?= -O2 -Wall -Wno-unused-parameter
 CFLAGS += -std=c99 -D_GNU_SOURCE
 
 ###################
