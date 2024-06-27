@@ -54,7 +54,7 @@ defmodule Circuits.UART.MixProject do
         "mix.exs",
         "README.md",
         "LICENSE",
-        "CHANGELOG.md"
+        "CHANGELOG.md",
         "checksum.exs"
       ],
       licenses: ["Apache-2.0"],
