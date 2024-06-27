@@ -24,6 +24,7 @@ defmodule Circuits.UART.MixProject do
       make_precompiler_filename: "nif",
       make_precompiler_priv_paths: ["nif.*"],
       make_precompiler_unavailable_target: :compile,
+      cc_precompiler: cc_precompiler(),
       docs: docs(),
       start_permanent: Mix.env() == :prod,
       dialyzer: dialyzer(),
@@ -54,6 +55,7 @@ defmodule Circuits.UART.MixProject do
         "README.md",
         "LICENSE",
         "CHANGELOG.md"
+        "checksum.exs"
       ],
       licenses: ["Apache-2.0"],
       links: %{"GitHub" => @source_url}
@@ -112,5 +114,28 @@ defmodule Circuits.UART.MixProject do
       {:win32, _} -> @windows_mingw_error_msg
       _ -> :default
     end
+  end
+
+  defp cc_precompiler do
+    [
+      cleanup: "clean",
+      compilers: %{
+        {:unix, :linux} => %{
+          :include_default_ones => true,
+          "x86_64-linux-musl" => "x86_64-linux-musl-",
+          "aarch64-linux-musl" => "aarch64-linux-musl-",
+          "riscv64-linux-musl" => "riscv64-linux-musl-",
+          "x86_64-linux-gnu" => "x86_64-linux-gnu-",
+          "aarch64-linux-gnu" => "aarch64-linux-gnu-",
+          "riscv64-linux-gnu" => "riscv64-linux-gnu-"
+        },
+        {:unix, :darwin} => %{
+          :include_default_ones => true
+        },
+        {:win32, :nt} => %{
+          :include_default_ones => true
+        }
+      }
+    ]
   end
 end
