@@ -98,7 +98,7 @@ jobs:
 
       - name: Create precompiled library
         run: |
-          Add-Content $env:PATH "C:\msys64\usr\bin;$env:PATH"
+          echo "C:\msys64\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
           mix deps.get
           mix elixir_make.precompile
 
