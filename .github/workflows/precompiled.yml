@@ -90,11 +90,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up MinGW
-        uses: egor-tensin/setup-mingw@v2
-        with:
-            platform: x64
-
       - uses: erlef/setup-beam@v1
         with:
           otp-version: "25.1"
@@ -107,6 +102,7 @@ jobs:
 
       - name: Create precompiled library
         run: |
+          $env:PATH = "C:\msys64\usr\bin;$env:PATH"
           mix deps.get
           mix elixir_make.precompile
 
