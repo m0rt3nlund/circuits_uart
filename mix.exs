@@ -49,7 +49,6 @@ defmodule Circuits.UART.MixProject do
         "src/*.[ch]",
         "src/ei_copy/*.[ch]",
         "src/Makefile",
-        "src/Makefile.win",
         "test",
         "mix.exs",
         "README.md",
