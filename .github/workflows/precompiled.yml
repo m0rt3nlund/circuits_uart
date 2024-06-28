@@ -24,6 +24,10 @@ jobs:
           sudo apt-get install -y build-essential automake autoconf pkg-config bc m4 unzip zip \
             gcc g++ \
             gcc-i686-linux-gnu g++-i686-linux-gnu \
+            sudo apt-get update
+            sudo apt-get install -y build-essential automake autoconf pkg-config bc m4 unzip zip wget \
+            gcc g++ \
+            gcc-i686-linux-gnu g++-i686-linux-gnu \
             gcc-aarch64-linux-gnu g++-aarch64-linux-gnu \
             gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf \
             gcc-riscv64-linux-gnu g++-riscv64-linux-gnu \
@@ -40,33 +44,10 @@ jobs:
 
       - name: Create precompiled library
         run: |
-          export ELIXIR_MAKE_CACHE_DIR=$(pwd)/cache
-          mkdir -p "${ELIXIR_MAKE_CACHE_DIR}"
-          mix deps.get
-          mix elixir_make.precompile
-
-      - uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          files: |
-            cache/*.tar.gz
-
-  macos:
-    runs-on: macos-11
-    env:
-      MIX_ENV: "prod"
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Install erlang and elixir
-        run: |
-          brew install erlang elixir
-          mix local.hex --force
-          mix local.rebar --force
-
-      - name: Create precompiled library
-        run: |
+          for musl_arch in x86_64 aarch64 riscv64
+            do
+              export PATH="$(pwd)/${musl_arch}-linux-musl-cross/bin:${PATH}"
+            done
           export ELIXIR_MAKE_CACHE_DIR=$(pwd)/cache
           mkdir -p "${ELIXIR_MAKE_CACHE_DIR}"
           mix deps.get
@@ -85,10 +66,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      - uses: egor-tensin/setup-mingw@v2.2.0
-        with:
-          version: 12.2.0 
 
       - uses: erlef/setup-beam@v1
         with:
