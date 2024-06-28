@@ -76,6 +76,8 @@ jobs:
       - name: Create precompiled library
         shell: bash
         run: |
+          export ELIXIR_MAKE_CACHE_DIR=$(pwd)/cache
+          mkdir -p "${ELIXIR_MAKE_CACHE_DIR}"
           mix deps.get
           mix elixir_make.precompile
 
