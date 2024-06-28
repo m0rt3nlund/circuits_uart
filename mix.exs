@@ -133,7 +133,7 @@ defmodule Circuits.UART.MixProject do
           :include_default_ones => true
         },
         {:win32, :nt} => %{
-          :include_default_ones => true
+          "x86_64-w64-mingw32-gcc" => {"gcc", "gcc"}
         }
       }
     ]

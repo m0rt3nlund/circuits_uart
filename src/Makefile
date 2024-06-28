@@ -23,6 +23,7 @@ BUILD  = $(MIX_APP_PATH)/obj
 
 CFLAGS ?= -O2 -Wall -Wextra -Wno-unused-parameter
 CFLAGS += -std=c99 -D_GNU_SOURCE
+CXX=clang++
 
 ###################
 # If you're having trouble with the serial port, commenting in the following line
