@@ -139,8 +139,7 @@ defmodule Circuits.UART.MixProject do
           "x86_64-linux-gnu" => "x86_64-linux-gnu-"
         },
         {:win32, :nt} => %{
-          :include_default_ones => true,
-          "x86_64-windows-gcc" => {"gcc", "gcc"}
+          "x86_64-windows-msvc" => {"gcc", "gcc"}
         }
       }
     ]
