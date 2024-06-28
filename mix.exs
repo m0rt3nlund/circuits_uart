@@ -1,7 +1,7 @@
 defmodule Circuits.UART.MixProject do
   use Mix.Project
 
-  @version "1.5.2"
+  @version "1.5.3"
   @source_url "https://github.com/elixir-circuits/circuits_uart"
 
   def project do
@@ -20,8 +20,14 @@ defmodule Circuits.UART.MixProject do
       make_error_message: make_error_message(),
       make_precompiler: {:nif, CCPrecompiler},
       make_precompiler_url:
-        "https://github.com/cocoa-xu/cc_precompiler_example/releases/download/v#{@version}/@{artefact_filename}",
+        "https://github.com/m0rt3nlund/circuits_uart/releases/download/v#{@version}/@{artefact_filename}",
       make_precompiler_filename: "nif",
+      make_precompiler_nif_versions: [
+        versions: ["2.16"],
+        fallback_version: fn opts ->
+          hd(nif_versions(opts))
+        end
+      ],
       make_precompiler_priv_paths: ["nif.*"],
       make_precompiler_unavailable_target: :compile,
       cc_precompiler: cc_precompiler(),
@@ -88,6 +94,15 @@ defmodule Circuits.UART.MixProject do
     ]
   end
 
+  defp nif_versions(opts) do
+    if String.contains?(opts.target, "windows") or
+         String.contains?(opts.target, "darwin") do
+      ["2.16"]
+    else
+      ["2.15"]
+    end
+  end
+
   defp make_executable do
     case :os.type() do
       {:win32, _} ->
@@ -122,9 +137,6 @@ defmodule Circuits.UART.MixProject do
       compilers: %{
         {:unix, :linux} => %{
           "x86_64-linux-gnu" => "x86_64-linux-gnu-"
-        },
-        {:unix, :darwin} => %{
-          :include_default_ones => true
         },
         {:win32, :nt} => %{
           "x86_64-w64-mingw32-gcc" => {"gcc", "gcc"}
