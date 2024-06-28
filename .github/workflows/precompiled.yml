@@ -21,18 +21,14 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential automake autoconf pkg-config bc m4 unzip zip \
-            gcc g++ \
-            gcc-i686-linux-gnu g++-i686-linux-gnu \
-            sudo apt-get update
-            sudo apt-get install -y build-essential automake autoconf pkg-config bc m4 unzip zip wget \
-            gcc g++ \
-            gcc-i686-linux-gnu g++-i686-linux-gnu \
-            gcc-aarch64-linux-gnu g++-aarch64-linux-gnu \
-            gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf \
-            gcc-riscv64-linux-gnu g++-riscv64-linux-gnu \
-            gcc-powerpc64le-linux-gnu g++-powerpc64le-linux-gnu \
-            gcc-s390x-linux-gnu g++-s390x-linux-gnu
+          sudo apt-get install -y build-essential automake autoconf pkg-config bc m4 unzip zip wget \
+          gcc g++ \
+          gcc-i686-linux-gnu g++-i686-linux-gnu \
+          gcc-aarch64-linux-gnu g++-aarch64-linux-gnu \
+          gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf \
+          gcc-riscv64-linux-gnu g++-riscv64-linux-gnu \
+          gcc-powerpc64le-linux-gnu g++-powerpc64le-linux-gnu \
+          gcc-s390x-linux-gnu g++-s390x-linux-gnu
 
       - name: Get musl cross-compilers (Optional, use this if you have musl targets to compile)
         run: |
